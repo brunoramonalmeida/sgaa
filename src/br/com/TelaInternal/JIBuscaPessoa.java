@@ -2,7 +2,9 @@ package br.com.TelaInternal;
 
 import br.com.TelasPrincipais.TPrincipal;
 import br.com.DAO.PessoaDAO;
+import br.com.JavaBean.Pessoa;
 import br.com.Tests.PessoaTeste;
+import javax.swing.JOptionPane;
 
 public class JIBuscaPessoa extends javax.swing.JInternalFrame {
 
@@ -135,8 +137,10 @@ public class JIBuscaPessoa extends javax.swing.JInternalFrame {
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         PessoaDAO dao = new PessoaDAO();
+        Pessoa pbusca = new Pessoa();
         int mat = Integer.parseInt(ftfMatricula.getText().replace(".", "").replace(" ", ""));
-        dao.consultarPorId(mat);
+        pbusca = dao.consultarPorId(mat);
+        JOptionPane.showMessageDialog(null, "Nome: "+pbusca.getNome()+"\nArea de conhecimento: "+pbusca.getAreaConhecimento());
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed

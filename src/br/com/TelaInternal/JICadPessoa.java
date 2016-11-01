@@ -1,5 +1,9 @@
 package br.com.TelaInternal;
 
+import br.com.DAO.PessoaDAO;
+import br.com.JavaBean.Pessoa;
+import javax.swing.JOptionPane;
+
 public class JICadPessoa extends javax.swing.JInternalFrame {
 
     public JICadPessoa() {
@@ -177,7 +181,14 @@ public class JICadPessoa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
+        PessoaDAO dao = new PessoaDAO();
+        Pessoa pcad = new Pessoa();
+        int pcadmat = Integer.parseInt(ftfMatricula.getText().replace(".", "").replace(" ", ""));
+        pcad.setNome(tfNome.getText().toString());
+        pcad.setMatricula(pcadmat);
+        pcad.setAreaConhecimento(taAreaConhec.getText().toString());
+        dao.salvar(pcad);
+        JOptionPane.showMessageDialog(null, "Pessoa Cadastrada!");
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void taAreaConhecAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_taAreaConhecAncestorAdded
