@@ -2,6 +2,7 @@ package br.com.TelaInternal;
 
 import br.com.DAO.DisciplinaDAO;
 import br.com.JavaBean.Disciplina;
+import javax.swing.JOptionPane;
 
 public class JICadDisciplina extends javax.swing.JInternalFrame {
 
@@ -125,6 +126,8 @@ public class JICadDisciplina extends javax.swing.JInternalFrame {
         ds.setQntHora(Integer.parseInt(tfQuantHoras.getText()));
         
         DisciplinaDAO dao = new DisciplinaDAO();
+        dao.salvar(ds);
+        JOptionPane.showMessageDialog(null, "Disciplina Cadastrada com Sucesso!");
         
     }//GEN-LAST:event_btSalvarActionPerformed
 
