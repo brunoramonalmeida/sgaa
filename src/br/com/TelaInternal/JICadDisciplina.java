@@ -2,6 +2,7 @@ package br.com.TelaInternal;
 
 import br.com.DAO.DisciplinaDAO;
 import br.com.JavaBean.Disciplina;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 public class JICadDisciplina extends javax.swing.JInternalFrame {
@@ -118,6 +119,11 @@ public class JICadDisciplina extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+    }
+    
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         
         Disciplina ds = new Disciplina();

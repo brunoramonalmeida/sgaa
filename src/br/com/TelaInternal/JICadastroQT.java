@@ -5,17 +5,48 @@
  */
 package br.com.TelaInternal;
 
+import br.com.DAO.CursoDAO;
+import br.com.DAO.DisciplinaDAO;
+import br.com.JavaBean.Curso;
+import br.com.JavaBean.Disciplina;
+import br.com.JavaBean.Pessoa;
+import br.com.JavaBean.Questao;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author manoel
  */
 public class JICadastroQT extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form JICadastoQT
-     */
-    public JICadastroQT() {
+    CursoDAO daoCurso = new CursoDAO();
+    DisciplinaDAO daoDisciplina = new DisciplinaDAO();
+    List<Curso> listaCurso = daoCurso.consultarTodos();
+    List<Disciplina> listaDisciplina = daoDisciplina.consultarTodos();
+    int quantPer = 0;
+    Pessoa user = null;
+    
+    public JICadastroQT(Pessoa pessoa) {
         initComponents();
+        user = pessoa;
+        
+        quantPer = listaCurso.get(0).getQuantPeriodo() ;
+        
+        for (int i = 0; i < quantPer; i++) {
+            cbPeriodo.addItem(""+(i+1));
+        }
+        
+        for (int i = 0; i < listaCurso.size(); i++) {
+           cbCurso.addItem(listaCurso.get(i).getNome());  
+        }
+        
+        for (int i = 0; i < listaDisciplina.size(); i++) {
+            cbDisciplina.addItem(listaDisciplina.get(i).getNome());
+        }
+        
     }
 
     /**
@@ -59,12 +90,14 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         chbCorreta5 = new javax.swing.JCheckBox();
         chbCorreta3 = new javax.swing.JCheckBox();
         pn1 = new javax.swing.JPanel();
-        cbCurso = new javax.swing.JComboBox<String>();
+        cbCurso = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        cbGrauDificul = new javax.swing.JComboBox<String>();
-        cbPeriodo = new javax.swing.JComboBox<String>();
+        cbGrauDificul = new javax.swing.JComboBox<>();
+        cbPeriodo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cbDisciplina = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Cadastro de Questões");
@@ -188,17 +221,21 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
 
         pn1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, null));
 
-        cbCurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCursoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Curso: ");
 
-        jLabel10.setText("<html>Grau de <br>Dificuldade");
+        jLabel10.setText("<html>Grau de <br>Dificuldade:");
 
-        cbGrauDificul.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbGrauDificul.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baixo", "Medio", "Alto" }));
 
         jLabel11.setText("Período: ");
+
+        jLabel12.setText("Disciplina:");
 
         javax.swing.GroupLayout pn1Layout = new javax.swing.GroupLayout(pn1);
         pn1.setLayout(pn1Layout);
@@ -207,16 +244,19 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
             .addGroup(pn1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cbGrauDificul, 0, 250, Short.MAX_VALUE)
-                        .addComponent(cbPeriodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(cbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pn1Layout.createSequentialGroup()
+                        .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11))
+                        .addGap(10, 10, 10)
+                        .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbGrauDificul, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbDisciplina, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbPeriodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel12))
+                .addContainerGap())
         );
         pn1Layout.setVerticalGroup(
             pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,6 +269,10 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
                 .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbGrauDificul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(cbDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,13 +291,22 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(chbCorreta1))
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
-                                        .addComponent(chbCorreta2)))
+                                        .addComponent(chbCorreta2))
+                                    .addComponent(jLabel1))
                                 .addGap(48, 48, 48)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane7)
@@ -271,15 +324,7 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
                                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel8))
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(pn1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(chbCorreta1))
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(pn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -288,10 +333,7 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(chbCorreta3))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(201, 201, 201)
                 .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,13 +348,15 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(5, 5, 5)
                 .addComponent(jLabel2)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -367,6 +411,11 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+    }
+    
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
        
        taEnunciado.setText("");
@@ -394,12 +443,51 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
+        Questao q = new Questao();
+        q.setEnunciado(taEnunciado.getText().toString());
+        q.setGrauDificuldade(cbGrauDificul.getSelectedItem().toString());
+        q.setAssunto(taAssunto.getText().toString());
+        q.setPessoa(user);
+        Curso cursoSelecionado = null;
+        Disciplina disciplinaSelecionada = null;
+        
+        // pegar curso selecionado
+        for (int i = 0; i < listaCurso.size(); i++) {
+            if(listaCurso.get(i).getNome().equals(cbCurso.getSelectedItem().toString())){
+                cursoSelecionado = listaCurso.get(i);
+                q.setCurso(cursoSelecionado);
+            }
+        }
+        
+        // pegar disciplina selecionada
+        for (int i = 0; i < listaDisciplina.size(); i++) {
+            if(listaDisciplina.get(i).getNome().equals(cbDisciplina.getSelectedItem().toString())){
+                disciplinaSelecionada = listaDisciplina.get(i);
+                q.setDisciplina(disciplinaSelecionada);
+            }
+        }
+        
+        
+        JOptionPane.showMessageDialog(null, q.toString());
+        
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void cbCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCursoActionPerformed
+        cbPeriodo.removeAllItems();
+        for(int i = 0; i < listaCurso.size(); i++){
+            if(listaCurso.get(i).getNome().equals(cbCurso.getSelectedItem().toString())){
+                quantPer = listaCurso.get(i).getQuantPeriodo();
+            }
+        }
+        
+        for(int j = 0; j < quantPer; j++){
+            cbPeriodo.addItem(""+(j+1));
+        }
+    }//GEN-LAST:event_cbCursoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -408,6 +496,7 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox<String> cbCurso;
+    private javax.swing.JComboBox<String> cbDisciplina;
     private javax.swing.JComboBox<String> cbGrauDificul;
     private javax.swing.JComboBox<String> cbPeriodo;
     private javax.swing.JCheckBox chbCorreta1;
@@ -418,6 +507,7 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

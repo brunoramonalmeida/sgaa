@@ -2,6 +2,7 @@ package br.com.TelaInternal;
 
 import br.com.DAO.PessoaDAO;
 import br.com.JavaBean.Pessoa;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 public class JICadPessoa extends javax.swing.JInternalFrame {
@@ -166,6 +167,11 @@ public class JICadPessoa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+    }
+    
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNomeActionPerformed

@@ -5,34 +5,36 @@ import br.com.DAO.PessoaDAO;
 import br.com.JavaBean.Pessoa;
 import br.com.Tests.PessoaTeste;
 import java.awt.Dimension;
+import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
-public class JIBuscaPessoa extends javax.swing.JInternalFrame {
+public class JIEntrarPessoa extends javax.swing.JInternalFrame {
 
-    public JIBuscaPessoa() {
+    JDesktopPane desktop;
+    public JIEntrarPessoa(JDesktopPane desktop) {
         initComponents();
+        this.desktop = desktop;
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btBuscar = new javax.swing.JButton();
+        btEntrar = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
-        btLimpar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         ftfMatricula = new javax.swing.JFormattedTextField();
 
         setClosable(true);
-        setTitle("Buscar Pessoas");
-        setPreferredSize(null);
+        setTitle("Entrar");
 
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/Imagens/buscar-usuario.gif"))); // NOI18N
-        btBuscar.setText("CONSULTAR");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/Imagens/buscar-usuario.gif"))); // NOI18N
+        btEntrar.setText("Entrar");
+        btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
+                btEntrarActionPerformed(evt);
             }
         });
 
@@ -43,15 +45,6 @@ public class JIBuscaPessoa extends javax.swing.JInternalFrame {
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelActionPerformed(evt);
-            }
-        });
-
-        btLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/Imagens/borracha-limpar.gif"))); // NOI18N
-        btLimpar.setText("LIMPAR");
-        btLimpar.setPreferredSize(new java.awt.Dimension(149, 60));
-        btLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparActionPerformed(evt);
             }
         });
 
@@ -75,7 +68,7 @@ public class JIBuscaPessoa extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(ftfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,12 +88,9 @@ public class JIBuscaPessoa extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -110,11 +100,12 @@ public class JIBuscaPessoa extends javax.swing.JInternalFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btBuscar)
-                    .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,29 +116,41 @@ public class JIBuscaPessoa extends javax.swing.JInternalFrame {
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
     }
     
-    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-
-        ftfMatricula.setText("");
-
-    }//GEN-LAST:event_btLimparActionPerformed
-
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
-    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         PessoaDAO dao = new PessoaDAO();
         Pessoa pbusca = new Pessoa();
         int mat = Integer.parseInt(ftfMatricula.getText().replace(".", "").replace(" ", ""));
-        pbusca = dao.consultarPorId(mat);
-        JOptionPane.showMessageDialog(null, "Nome: "+pbusca.getNome()+"\nArea de conhecimento: "+pbusca.getAreaConhecimento());
-    }//GEN-LAST:event_btBuscarActionPerformed
+        
+        List<Pessoa> listaPessoa = dao.consultarTodos();
+        boolean entrar = false;
+        
+        for(int i = 0; i < listaPessoa.size(); i++){
+            if(listaPessoa.get(i).getMatricula() == mat){
+                entrar = true;
+                pbusca = listaPessoa.get(i);
+            }
+        }
+        
+        if(entrar == true){
+            JICadastroQT cadpes = new JICadastroQT(pbusca);
+            cadpes.setVisible(true);
+            desktop.add(cadpes);
+            cadpes.setPosicao();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "A Matricula está incorreta!");
+        }
+        
+    }//GEN-LAST:event_btEntrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btBuscar;
     private javax.swing.JButton btCancel;
-    private javax.swing.JButton btLimpar;
+    public javax.swing.JButton btEntrar;
     private javax.swing.JFormattedTextField ftfMatricula;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

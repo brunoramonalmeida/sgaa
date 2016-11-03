@@ -5,6 +5,8 @@
  */
 package br.com.TelaInternal;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author manoel
@@ -177,6 +179,11 @@ public class JIBuscaQT extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+    }
+    
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
 
     }//GEN-LAST:event_btInserirActionPerformed

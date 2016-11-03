@@ -127,7 +127,12 @@ public class Questao {
 //    public void setAvaliacao(List<Avaliacao> avaliacao) {
 //        this.avaliacao = avaliacao;
 //    }
+
+    @Override
+    public String toString() {
+        return "Questao{" + "cod=" + cod + ", assunto=" + assunto + ", enunciado=" + enunciado + ", resposta=" + resposta + ", grauDificuldade=" + grauDificuldade + ", pessoa=" + pessoa.getNome().toString() + ", curso=" + curso.getNome().toString() + ", disciplina=" + disciplina.getNome().toString() + '}';
+    }
     
-    
+      
     
 }

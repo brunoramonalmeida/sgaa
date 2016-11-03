@@ -2,6 +2,7 @@ package br.com.DAO;
 
 import br.com.JDBC.ConnectionFactory;
 import br.com.JavaBean.Curso;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -94,5 +95,14 @@ public class CursoDAO {
             em.close();
         }
     }//FIM DELETE
+    
+    public List<Curso> consultarTodos() {
+        EntityManager em = new ConnectionFactory().getEM();
+
+        List<Curso> listaCursos = em.createQuery("from Curso u").getResultList();
+        em.close();
+        
+        return listaCursos;
+    }
     
 }

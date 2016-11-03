@@ -7,6 +7,8 @@ package br.com.TelaInternal;
 
 import br.com.DAO.CursoDAO;
 import br.com.JavaBean.Curso;
+import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -142,6 +144,11 @@ public class JICadCurso extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+    }
+    
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Curso cs = new Curso();
         cs.setNome(tfNome.getText());
@@ -149,6 +156,7 @@ public class JICadCurso extends javax.swing.JInternalFrame {
         
         CursoDAO dao = new CursoDAO();
         dao.salvar(cs);
+        JOptionPane.showMessageDialog(null, "Curso Cadastrado com Sucesso!");
         
     }//GEN-LAST:event_btSalvarActionPerformed
 

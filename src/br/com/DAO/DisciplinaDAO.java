@@ -2,7 +2,10 @@
 package br.com.DAO;
 
 import br.com.JDBC.ConnectionFactory;
+import br.com.JavaBean.Curso;
 import br.com.JavaBean.Disciplina;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -41,6 +44,15 @@ public class DisciplinaDAO {
         }
         
         return d;
+    }
+    
+    public List<Disciplina> consultarTodos() {
+        EntityManager em = new ConnectionFactory().getEM();
+
+        List<Disciplina> listaDisciplinas = em.createQuery("from Disciplina u").getResultList();
+        em.close();
+        
+        return listaDisciplinas;
     }
     
 }

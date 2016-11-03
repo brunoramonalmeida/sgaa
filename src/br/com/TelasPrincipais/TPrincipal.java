@@ -1,11 +1,13 @@
 package br.com.TelasPrincipais;
 
+import br.com.JavaBean.Pessoa;
 import br.com.TelaInternal.JIBuscaPessoa;
 import br.com.TelaInternal.JIBuscaQT;
 import br.com.TelaInternal.JICadCurso;
 import br.com.TelaInternal.JICadDisciplina;
 import br.com.TelaInternal.JICadPessoa;
 import br.com.TelaInternal.JICadastroQT;
+import br.com.TelaInternal.JIEntrarPessoa;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,7 @@ public class TPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,17 +171,24 @@ public class TPrincipal extends javax.swing.JFrame {
         JICadPessoa cadpes = new JICadPessoa();
         cadpes.setVisible(true);
         pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
         
         
         //pnPrincipal.add(new JICadPessoa()).setVisible(true);
     }//GEN-LAST:event_jmiCadPessActionPerformed
-
+    
     private void jmiConsulQTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsulQTActionPerformed
-        pnPrincipal.add(new JIBuscaQT()).setVisible(true);
+        JIBuscaQT cadpes = new JIBuscaQT();
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
     }//GEN-LAST:event_jmiConsulQTActionPerformed
 
     private void jmiCadQTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadQTActionPerformed
-        pnPrincipal.add(new JICadastroQT()).setVisible(true);
+        JIEntrarPessoa cadpes = new JIEntrarPessoa(pnPrincipal);
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
     }//GEN-LAST:event_jmiCadQTActionPerformed
 
     private void jmiSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSairActionPerformed
@@ -191,15 +201,24 @@ public class TPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiSairActionPerformed
 
     private void jmiCadDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadDisciplinaActionPerformed
-        pnPrincipal.add(new JICadDisciplina()).setVisible(true);
+        JICadDisciplina cadpes = new JICadDisciplina();
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
     }//GEN-LAST:event_jmiCadDisciplinaActionPerformed
 
     private void jmiCadCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadCursoActionPerformed
-        pnPrincipal.add(new JICadCurso()).setVisible(true);
+        JICadCurso cadpes = new JICadCurso();
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
     }//GEN-LAST:event_jmiCadCursoActionPerformed
 
     private void jmiConsultarPessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarPessActionPerformed
-        pnPrincipal.add( new JIBuscaPessoa()).setVisible(true);
+        JIBuscaPessoa cadpes = new JIBuscaPessoa();
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
     }//GEN-LAST:event_jmiConsultarPessActionPerformed
     
     public void acessarCad(){
