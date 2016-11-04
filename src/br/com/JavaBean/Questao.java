@@ -130,7 +130,7 @@ public class Questao {
 
     @Override
     public String toString() {
-        return "Questao{" + "cod=" + cod + ", assunto=" + assunto + ", enunciado=" + enunciado + ", resposta=" + resposta + ", grauDificuldade=" + grauDificuldade + ", pessoa=" + pessoa.getNome().toString() + ", curso=" + curso.getNome().toString() + ", disciplina=" + disciplina.getNome().toString() + '}';
+        return "Questao:\n" + "Código: " + cod + "\nAssunto: " + assunto + "\nEnunciado: " + enunciado + "\nResposta: " + resposta + "\nGrau de Dificuldade: " + grauDificuldade + "\nPessoa: " + pessoa.getNome().toString() + "\nCurso: " + curso.getNome().toString() + "\nDisciplina: " + disciplina.getNome().toString();
     }
     
       

@@ -210,14 +210,39 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         });
 
         chbCorreta1.setText("Correta");
+        chbCorreta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbCorreta1ActionPerformed(evt);
+            }
+        });
 
         chbCorreta4.setText("Correta");
+        chbCorreta4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbCorreta4ActionPerformed(evt);
+            }
+        });
 
         chbCorreta2.setText("Correta");
+        chbCorreta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbCorreta2ActionPerformed(evt);
+            }
+        });
 
         chbCorreta5.setText("Correta");
+        chbCorreta5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbCorreta5ActionPerformed(evt);
+            }
+        });
 
         chbCorreta3.setText("Correta");
+        chbCorreta3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbCorreta3ActionPerformed(evt);
+            }
+        });
 
         pn1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, null));
 
@@ -448,6 +473,7 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         q.setGrauDificuldade(cbGrauDificul.getSelectedItem().toString());
         q.setAssunto(taAssunto.getText().toString());
         q.setPessoa(user);
+        q.setResposta(corretaSelecionada());
         Curso cursoSelecionado = null;
         Disciplina disciplinaSelecionada = null;
         
@@ -489,6 +515,67 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbCursoActionPerformed
 
+    // Resposta A Selecionada
+    private void chbCorreta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbCorreta1ActionPerformed
+        chbCorreta2.setSelected(false);
+        chbCorreta3.setSelected(false);
+        chbCorreta4.setSelected(false);
+        chbCorreta5.setSelected(false);
+    }//GEN-LAST:event_chbCorreta1ActionPerformed
+
+    private void chbCorreta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbCorreta2ActionPerformed
+        chbCorreta1.setSelected(false);
+        chbCorreta3.setSelected(false);
+        chbCorreta4.setSelected(false);
+        chbCorreta5.setSelected(false);
+    }//GEN-LAST:event_chbCorreta2ActionPerformed
+
+    private void chbCorreta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbCorreta3ActionPerformed
+        chbCorreta1.setSelected(false);
+        chbCorreta2.setSelected(false);
+        chbCorreta4.setSelected(false);
+        chbCorreta5.setSelected(false);
+    }//GEN-LAST:event_chbCorreta3ActionPerformed
+
+    private void chbCorreta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbCorreta4ActionPerformed
+        chbCorreta1.setSelected(false);
+        chbCorreta2.setSelected(false);
+        chbCorreta3.setSelected(false);
+        chbCorreta5.setSelected(false);
+    }//GEN-LAST:event_chbCorreta4ActionPerformed
+
+    private void chbCorreta5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbCorreta5ActionPerformed
+        chbCorreta1.setSelected(false);
+        chbCorreta2.setSelected(false);
+        chbCorreta3.setSelected(false);
+        chbCorreta4.setSelected(false);
+    }//GEN-LAST:event_chbCorreta5ActionPerformed
+
+    public int corretaSelecionada(){
+        int resposta = -1;
+        
+        if(chbCorreta1.isSelected()){
+            resposta = 0;
+        }
+        
+        if(chbCorreta2.isSelected()){
+            resposta = 1;
+        }
+        
+        if(chbCorreta3.isSelected()){
+            resposta = 2;
+        }
+        
+        if(chbCorreta4.isSelected()){
+            resposta = 3;
+        }
+        
+        if(chbCorreta5.isSelected()){
+            resposta = 4;
+        }
+        
+        return resposta;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

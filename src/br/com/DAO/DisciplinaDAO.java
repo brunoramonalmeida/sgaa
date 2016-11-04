@@ -7,6 +7,7 @@ import br.com.JavaBean.Disciplina;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 public class DisciplinaDAO {
@@ -46,12 +47,22 @@ public class DisciplinaDAO {
         return d;
     }
     
-    public List<Disciplina> consultarTodos() {
+    
+    public List<Disciplina> consultarTodos(){
         EntityManager em = new ConnectionFactory().getEM();
-
-        List<Disciplina> listaDisciplinas = em.createQuery("from Disciplina u").getResultList();
-        em.close();
+        List<Disciplina> listaDisciplinas = null;
         
+        try{
+            em.getTransaction().begin();
+            Query q = em.createQuery("from Disciplina u");
+            listaDisciplinas = q.getResultList();
+            em.getTransaction().commit();
+        }catch(Exception e){
+            System.out.println(e);
+            em.getTransaction().rollback();
+        }finally{
+            em.close();
+        }
         return listaDisciplinas;
     }
     

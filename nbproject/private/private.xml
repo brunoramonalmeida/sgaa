@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/DAO/DisciplinaDAO.java</file>
+            <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/DAO/PessoaDAO.java</file>
             <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/JavaBean/Questao.java</file>
             <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/TelaInternal/JICadastroQT.java</file>
-            <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/TelaInternal/JIMontarAval.java</file>
-            <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/TelasPrincipais/TPrincipal.java</file>
-            <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/TelaInternal/JIEntrarPessoa.java</file>
+            <file>file:/C:/Users/Jean/Git/SGAA/src/br/com/DAO/CursoDAO.java</file>
         </group>
     </open-files>
 </project-private>

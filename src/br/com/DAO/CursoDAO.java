@@ -4,6 +4,7 @@ import br.com.JDBC.ConnectionFactory;
 import br.com.JavaBean.Curso;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 public class CursoDAO {
@@ -96,12 +97,21 @@ public class CursoDAO {
         }
     }//FIM DELETE
     
-    public List<Curso> consultarTodos() {
+    public List<Curso> consultarTodos(){
         EntityManager em = new ConnectionFactory().getEM();
-
-        List<Curso> listaCursos = em.createQuery("from Curso u").getResultList();
-        em.close();
+        List<Curso> listaCursos = null;
         
+        try{
+            em.getTransaction().begin();
+            Query q = em.createQuery("from Curso u");
+            listaCursos = q.getResultList();
+            em.getTransaction().commit();
+        }catch(Exception e){
+            System.out.println(e);
+            em.getTransaction().rollback();
+        }finally{
+            em.close();
+        }
         return listaCursos;
     }
     
