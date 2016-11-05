@@ -18,6 +18,7 @@ public class PessoaDAO {
             em.getTransaction().begin();
             em.persist(pessoa);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Pessoa Cadastrada com Sucesso!");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "ERRO AO SALVAR DADOS DA PESSOA!\n]"
                     + "VERIFIQUE OS DADOS INFORMADOS.\n"+e, "ERRO AO SALVAR DADOS.", 1);

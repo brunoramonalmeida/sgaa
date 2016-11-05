@@ -8,6 +8,7 @@ import br.com.TelaInternal.JICadDisciplina;
 import br.com.TelaInternal.JICadPessoa;
 import br.com.TelaInternal.JICadastroQT;
 import br.com.TelaInternal.JIEntrarPessoa;
+import br.com.TelaInternal.JIMontarAval;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,6 +137,11 @@ public class TPrincipal extends javax.swing.JFrame {
         jmAvaliacao.add(jmiConsulAval);
 
         jmiMontarAval.setText("<html>Montar<br>Avaliação");
+        jmiMontarAval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMontarAvalActionPerformed(evt);
+            }
+        });
         jmAvaliacao.add(jmiMontarAval);
 
         bmPrincipal.add(jmAvaliacao);
@@ -220,6 +226,13 @@ public class TPrincipal extends javax.swing.JFrame {
         pnPrincipal.add(cadpes);
         cadpes.setPosicao();
     }//GEN-LAST:event_jmiConsultarPessActionPerformed
+
+    private void jmiMontarAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMontarAvalActionPerformed
+        JIMontarAval cadpes = new JIMontarAval();
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
+    }//GEN-LAST:event_jmiMontarAvalActionPerformed
     
     public void acessarCad(){
         

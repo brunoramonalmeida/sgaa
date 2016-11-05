@@ -3,7 +3,6 @@ package br.com.TelaInternal;
 import br.com.TelasPrincipais.TPrincipal;
 import br.com.DAO.PessoaDAO;
 import br.com.JavaBean.Pessoa;
-import br.com.Tests.PessoaTeste;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 

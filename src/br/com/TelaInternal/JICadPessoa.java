@@ -194,7 +194,7 @@ public class JICadPessoa extends javax.swing.JInternalFrame {
         pcad.setMatricula(pcadmat);
         pcad.setAreaConhecimento(taAreaConhec.getText().toString());
         dao.salvar(pcad);
-        JOptionPane.showMessageDialog(null, "Pessoa Cadastrada!");
+        
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void taAreaConhecAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_taAreaConhecAncestorAdded

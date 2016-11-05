@@ -18,6 +18,7 @@ public class CursoDAO {
             em.getTransaction().begin();
             em.persist(curso);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Curso Cadastrado com Sucesso!");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "ERRO AO SALVAR DADOS DO CURSO!\n]"
                     + "VERIFIQUE OS DADOS INFORMADOS.\n"+e, "ERRO AO SALVAR DADOS.", 1);

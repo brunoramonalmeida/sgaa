@@ -7,6 +7,7 @@ package br.com.TelaInternal;
 
 import br.com.DAO.CursoDAO;
 import br.com.DAO.DisciplinaDAO;
+import br.com.DAO.QuestaoDAO;
 import br.com.JavaBean.Curso;
 import br.com.JavaBean.Disciplina;
 import br.com.JavaBean.Pessoa;
@@ -494,7 +495,8 @@ public class JICadastroQT extends javax.swing.JInternalFrame {
         }
         
         
-        JOptionPane.showMessageDialog(null, q.toString());
+        QuestaoDAO dao = new QuestaoDAO();
+        dao.salvar(q);
         
     }//GEN-LAST:event_btSalvarActionPerformed
 

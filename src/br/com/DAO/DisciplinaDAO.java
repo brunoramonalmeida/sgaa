@@ -19,6 +19,7 @@ public class DisciplinaDAO {
             em.getTransaction().begin();
             em.persist(disciplina);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Disciplina Cadastrada com Sucesso!");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "ERRO AO SALVAR DADOS DA DISCIPLINA!\n]"
                     + "VERIFIQUE OS DADOS INFORMADOS.\n"+e, "ERRO AO SALVAR DADOS.", 1);

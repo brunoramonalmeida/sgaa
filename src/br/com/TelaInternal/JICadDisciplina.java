@@ -133,7 +133,7 @@ public class JICadDisciplina extends javax.swing.JInternalFrame {
         
         DisciplinaDAO dao = new DisciplinaDAO();
         dao.salvar(ds);
-        JOptionPane.showMessageDialog(null, "Disciplina Cadastrada com Sucesso!");
+        
         
     }//GEN-LAST:event_btSalvarActionPerformed
 

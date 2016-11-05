@@ -156,7 +156,7 @@ public class JICadCurso extends javax.swing.JInternalFrame {
         
         CursoDAO dao = new CursoDAO();
         dao.salvar(cs);
-        JOptionPane.showMessageDialog(null, "Curso Cadastrado com Sucesso!");
+        
         
     }//GEN-LAST:event_btSalvarActionPerformed
 
