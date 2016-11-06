@@ -5,12 +5,18 @@
  */
 package br.com.TelaInternal;
 
+import br.com.DAO.QuestaoDAO;
 import br.com.JavaBean.Curso;
 import br.com.JavaBean.EscreverQuestoes;
 import br.com.JavaBean.ModeloTabela;
 import br.com.JavaBean.Questao;
 import java.awt.Dimension;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -20,38 +26,21 @@ import javax.swing.ListSelectionModel;
  */
 public class JIMontarAval extends javax.swing.JInternalFrame {
 
+    QuestaoDAO dao = new QuestaoDAO();
+    List<Questao> questoesBanco = dao.consultarTodos();
     ArrayList<Questao> adicionadas = new ArrayList<>();
     ArrayList<Questao> q = new ArrayList<>();
     int idselecionadoTabela1 = -1;
     int idselecionadoTabela2 = -1;
+    JDesktopPane desktop;
                     
-    public JIMontarAval() {
+    public JIMontarAval(JDesktopPane desktop) {
         initComponents();
+        this.desktop = desktop;
 
-
-        
-        // testando objetos
-        Questao quest = new Questao();
-        quest.setEnunciado("Qual é o nome de Empresa que fundou o java?");
-        Curso c = new Curso();
-        c.setNome("Sistemas de Informação");
-        c.setQuantPeriodo(8);
-        c.setCodCurso(1);
-        quest.setCurso(c);
-        quest.setAssunto("Geral");
-        q.add(quest);
-        
-        //testando objetos
-        
-        Questao quest2 = new Questao();
-        quest2.setEnunciado("Qual é a melhor Faculdades de Balsas?");
-        Curso c2 = new Curso();
-        c2.setNome("Conhecimento Gerais");
-        c2.setQuantPeriodo(8);
-        c2.setCodCurso(1);
-        quest2.setCurso(c2);
-        quest2.setAssunto("Programação");
-        q.add(quest2);
+        for(int i = 0; i < questoesBanco.size(); i++){
+            q.add(questoesBanco.get(i));
+        }
         
         preencherTabelaQuestoes(q);
         
@@ -106,6 +95,11 @@ public class JIMontarAval extends javax.swing.JInternalFrame {
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton4.setText("Ver Questão");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         JTableQuestoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -254,7 +248,7 @@ public class JIMontarAval extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -294,6 +288,13 @@ public class JIMontarAval extends javax.swing.JInternalFrame {
         EscreverQuestoes montar = new EscreverQuestoes();
         montar.escrverTex(adicionadas);
     }//GEN-LAST:event_jButtonGerarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            JIVerQuestao cadpes = new JIVerQuestao();
+            cadpes.setVisible(true);
+            desktop.add(cadpes);
+            cadpes.setPosicao();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();

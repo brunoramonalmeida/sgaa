@@ -18,13 +18,13 @@ import javax.persistence.Table;
 @Table(name = "Questoes")
 @NamedQueries(
         @NamedQuery(name = "Questao.consultarTD",
-                query = "SELECT p FROM Questao p")
+                query = "SELECT q FROM Questao q")
 )
 public class Questao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cod;
+    private int cod_questao;
 
     private String assunto;
     private String enunciado;
@@ -55,11 +55,11 @@ public class Questao {
 //    private List<Avaliacao> avaliacao;
 
     public int getCod() {
-        return cod;
+        return cod_questao;
     }
 
     public void setCod(int cod) {
-        this.cod = cod;
+        this.cod_questao = cod;
     }
 
     public String getAssunto() {
@@ -117,6 +117,24 @@ public class Questao {
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
+    
+    public String verResposta(int resposta){
+        String respostaConvertida = "";
+        
+        if(resposta == 0){
+            respostaConvertida = "A";
+        } else if (resposta == 1){
+            respostaConvertida = "B";
+        } else if (resposta == 2){
+            respostaConvertida = "C";
+        } else if (resposta == 3){
+            respostaConvertida = "D";
+        } else if (resposta == 4){
+            respostaConvertida = "E";
+        }
+        
+        return respostaConvertida;
+    }
 //
 //    public List<Alternativa> getAlternativa() {
 //        return alternativa;
@@ -136,7 +154,7 @@ public class Questao {
 
     @Override
     public String toString() {
-        return "Questao:\n" + "Código: " + cod + "\nAssunto: " + assunto + "\nEnunciado: " + enunciado + "\nResposta: " + resposta + "\nGrau de Dificuldade: " + grauDificuldade + "\nPessoa: " + pessoa.getNome().toString() + "\nCurso: " + curso.getNome().toString() + "\nDisciplina: " + disciplina.getNome().toString();
+        return "Questao:\n" + "Código: " + cod_questao + "\nAssunto: " + assunto + "\nEnunciado: " + enunciado + "\nResposta: " + resposta + "\nGrau de Dificuldade: " + grauDificuldade + "\nPessoa: " + pessoa.getNome().toString() + "\nCurso: " + curso.getNome().toString() + "\nDisciplina: " + disciplina.getNome().toString();
     }
     
       

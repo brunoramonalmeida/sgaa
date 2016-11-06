@@ -9,6 +9,7 @@ import br.com.TelaInternal.JICadPessoa;
 import br.com.TelaInternal.JICadastroQT;
 import br.com.TelaInternal.JIEntrarPessoa;
 import br.com.TelaInternal.JIMontarAval;
+import br.com.TelaInternal.JISobre;
 import javax.swing.JOptionPane;
 
 /**
@@ -151,6 +152,11 @@ public class TPrincipal extends javax.swing.JFrame {
         jmAjuda.setText("Ajuda");
 
         jmiSobre.setText("Sobre");
+        jmiSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSobreActionPerformed(evt);
+            }
+        });
         jmAjuda.add(jmiSobre);
 
         bmPrincipal.add(jmAjuda);
@@ -228,11 +234,18 @@ public class TPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiConsultarPessActionPerformed
 
     private void jmiMontarAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMontarAvalActionPerformed
-        JIMontarAval cadpes = new JIMontarAval();
+        JIMontarAval cadpes = new JIMontarAval(pnPrincipal);
         cadpes.setVisible(true);
         pnPrincipal.add(cadpes);
         cadpes.setPosicao();
     }//GEN-LAST:event_jmiMontarAvalActionPerformed
+
+    private void jmiSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSobreActionPerformed
+        JISobre cadpes = new JISobre();
+        cadpes.setVisible(true);
+        pnPrincipal.add(cadpes);
+        cadpes.setPosicao();
+    }//GEN-LAST:event_jmiSobreActionPerformed
     
     public void acessarCad(){
         
